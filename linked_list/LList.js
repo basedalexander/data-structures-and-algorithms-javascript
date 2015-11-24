@@ -8,7 +8,7 @@ function LList() {
   this.insert = insert;
   this.display = display;
   this.findPrev = findPrev;
-  // this.remove = remove;
+  this.remove = remove;
 }
 
 
@@ -43,8 +43,15 @@ function display () {
 
 function findPrev (node) {
   var currentNode = this.head;
-  while(currentNode.next.name != node || currentNode.next != null) {
+  while (currentNode.next != null) {
+    if (currentNode.next.name === node) {
+      return currentNode;
+    }
     currentNode = currentNode.next;
   }
-  return currentNode;
+}
+
+function remove (name) {
+  var prevNode = this.findPrev('cheese');
+  prevNode.next = prevNode.next.next;
 }

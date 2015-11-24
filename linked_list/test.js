@@ -5,4 +5,6 @@ var list = new LList();
 list.insert('bread', 'head');
 list.insert('cheese', 'bread');
 list.display();
-console.log(list.findPrev('cheese'));
+list.remove('cheese');
+console.log('...................................');
+list.display();
