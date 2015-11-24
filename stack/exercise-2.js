@@ -30,6 +30,8 @@ function checkParentheses(expr) {
   // If the stack isn't empty, then return the end index of expression.
   if (stack.length()) {
     return expr.length - 1;
+  } else {
+    return -5;
   }
 }
 
