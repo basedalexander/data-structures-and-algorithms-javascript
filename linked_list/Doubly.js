@@ -1,15 +1,16 @@
-var Node = require('./Node').NodeSingly;
+var Node = require('./Node').NodeDoubly;
 
-module.exports = LList;
+module.exports = Doubly;
 
-function LList() {
+function Doubly() {
   this.head = new Node('head');
+  this.current = head;
   this.find = find;
   this.insert = insert;
   this.display = display;
-  this.findPrev = findPrev;
   this.remove = remove;
   this.advance = advance;
+  this.back = back;
 }
 
 
@@ -42,15 +43,6 @@ function display () {
   }
 }
 
-function findPrev (node) {
-  var currentNode = this.head;
-  while (currentNode.next != null) {
-    if (currentNode.next.name === node) {
-      return currentNode;
-    }
-    currentNode = currentNode.next;
-  }
-}
 
 function remove (name) {
   var prevNode = this.findPrev('cheese');
@@ -59,17 +51,27 @@ function remove (name) {
 
 
 function advance (n) {
-  var currentNode = this.head.next,
-      i;
+  var i;
   for (i = 0; i < n; i++) {
-    if (currentNode.next == null) return null;
-    currentNode = currentNode.next;
+    if (this.current.next == null) {
+      console.log('Can\'t be moved forward');
+      return this.current;
+    }
+    this.current = this.current.next;
   }
-
-  return currentNode;
+  return current;
 }
 
 function back (n) {
+  var i;
 
+  for (i = 0; i < n; i++) {
+    if (this.current.prev == null) {
+      console.info('can\'t be moved back');
+      return this.current;
+    }
+    this.current = this.current.prev;
+  }
+
+  return this.current;
 }
-
