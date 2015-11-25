@@ -4,7 +4,7 @@ module.exports = Doubly;
 
 function Doubly() {
   this.head = new Node('head');
-  this.current = head;
+  this.current = this.head;
   this.find = find;
   this.insert = insert;
   this.display = display;

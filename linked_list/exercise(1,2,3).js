@@ -6,6 +6,8 @@ var list = new Dllist();
 
 describe("test", function() {
   it("should behave...", function() {
-    expect(list.current.name).toBe('head');
+    expect(list.current.name).to.equal('head');
+    expect(list.current.prev).to.equal(null);
+    expect(list.current.next).to.equal(null);
   });
 });
