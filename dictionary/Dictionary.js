@@ -1,5 +1,7 @@
 "use strict";
 
+module.exports = Dictionary;
+
 function Dictionary () {
   this.data = [];
   this.add = add;
@@ -40,12 +42,3 @@ function show () {
     console.log(sorted[key] + ' : ' + this.data[sorted[key]]);
   }
 }
-
-
-var pbook = new Dictionary();
-
-pbook.add('Vasya', 123);
-pbook.add('Gena', 456);
-pbook.add('John', 252);
-pbook.show();
-console.log('count : ' + pbook.count());
