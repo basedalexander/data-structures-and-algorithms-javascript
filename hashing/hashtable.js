@@ -1,3 +1,5 @@
+module.exports = HashTable;
+
 function HashTable() {
   this.table = new Array(137);
   this.simpleHash = simpleHash;
@@ -44,9 +46,3 @@ function betterHash(string) {
   }
   return parseInt(total);
 }
-
-
-var table = new HashTable();
-table.put('gena');
-table.showDistro();
-
