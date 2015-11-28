@@ -1,3 +1,4 @@
 hello привет
 prototype прототип
 action действие
+olloeh наоборот

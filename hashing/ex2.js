@@ -1,8 +1,3 @@
-// ex#1 Use linear probing to create a simple dictionary to store the definitions of words.
-// Your program should have two parts. The first part reads a text file that contains a
-// list of words and definitions and stores them in a hash table. The second part of the
-// program allows a user to enter a word and see the definition of that word.
-
 var fs = require('fs'),
     table = require('./hashtable'),
     table = new table(),
@@ -13,34 +8,33 @@ var fs = require('fs'),
  *  Customizing original Hashtable class
  */
 table.keys = new Array(137);
-table.values = [];
+for (var i = 0; i < table.keys.length; i++) {
+  table.keys[i] = [];
+}
 
 table.put = function (key, value) {
-  var pos = this.betterHash(key);
-  if (this.keys[pos] == undefined) {
-    this.keys[pos] = key;
-    this.values[pos] = value;
+  var pos = this.betterHash(key),
+  i = 0;
+
+  while (this.keys[pos][i] != undefined) {
+    i = i + 2;
   }
-  else {
-    while (this.keys[pos] != undefined) {
-      pos++;
-    }
-    this.keys[pos] = key;
-    this.values[pos] = value;
-  }
+  this.keys[pos][i] = key;
+  this.keys[pos][i + 1] = value;
 };
 
 table.get = function (key) {
-  var pos = this.betterHash(key);
-  if (this.keys[pos] == undefined) {
-    return undefined;
-  }
+  var pos = this.betterHash(key),
+      row = this.keys[pos],
+      i,
+      len = row.length;
 
-  while (this.keys[pos] != key) {
-    pos++;
+  for (i = 0; i < len; i = i + 2) {
+    if (row[i] == key) {
+      return row[i + 1];
+    }
   }
-
-  return this.values[pos];
+  return undefined;
 };
 /* End */
 
