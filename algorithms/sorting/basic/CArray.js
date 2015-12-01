@@ -9,6 +9,9 @@ function CArray(numElements) {
   this.clear = clear;
   this.setData = setData;
   this.swap = swap;
+  this.bubbleSort = bubbleSort;
+  this.selectionSort = selectionSort;
+  this.insertionSort = insertionSort;
   for (var i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -48,4 +51,37 @@ function swap(arr, index1, index2) {
   arr[index2] = temp;
 }
 
+function bubbleSort() {
+  var numElements = this.dataStore.length,
+    temp;
+  for (var outer = numElements; outer >= 2; outer--) {
+    for (var inner = 0; inner <= outer - 1; inner++) {
+      if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+        this.swap(this.dataStore, inner, inner + 1);
+      }
+    }
+  }
+}
 
+function selectionSort() {
+  var min;
+  for (var i = 0; i < this.dataStore.length; i++) {
+    min = i;
+    for (var j = i + 1; j <= this.dataStore.length; j++) {
+      if (this.dataStore[j] < this.dataStore[min]) {
+        min = j;
+      }
+    }
+    this.swap(this.dataStore, i, min);
+  }
+}
+
+function insertionSort() {
+  for (var i = 1; i < this.dataStore.length; i++) {
+    j = i;
+    while (j > 0 && this.dataStore[j] < this.dataStore[j - 1]) {
+      this.swap(this.dataStore, j, j - 1);
+      j--;
+    }
+  }
+}
